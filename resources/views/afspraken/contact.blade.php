@@ -1,48 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Contact</title>
-</head>
-<body>
-    
-     <nav class="bg-green-600 text-white shadow-md">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="h-20 flex items-center justify-between">
+@extends('layouts.app')
 
-                <!-- Logo -->
-                <a href="/" class="flex items-center gap-2">
-            
-                     <img 
-                        src="{{ asset('images/fietsfix2.png') }}"
-                        alt="FietsFix"
-                        class="w-full h-[80px] object-cover ml-12"
-                    >
-                </a>
-
-                <!-- Menu -->
-                <div class="hidden md:flex items-center gap-8">
-
-                    <a href="/onderhoud"
-                       class="font-semibold hover:text-green-200 transition">
-                        Fietsonderhoud
-                    </a>
-
-                    <a href="/contact"
-                       class="bg-white text-green-600 px-5 py-2 rounded-full
-                              font-bold hover:bg-green-50 transition">
-                        Contact
-                    </a>
-
-                </div>
-            </div>
-        </div>
-    </nav>
-
-
+@section('content')
      <section class="relative">
 
         <img 
@@ -118,10 +76,4 @@
         </div>
 
     </section>
-
-    <footer>
-        
-    </footer>
-
-</body>
-</html>
+@endsection

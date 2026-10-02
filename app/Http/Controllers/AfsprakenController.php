@@ -22,6 +22,16 @@ class AfsprakenController extends Controller
     {
         return view('afspraken.contact');
     }
+
+       public function fietsonderhoud()
+    {
+        return view('afspraken.fietsonderhoud');
+    }
+
+    public function fietssoorten()
+    {
+        return view('afspraken.fietssoorten');
+    }
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -42,8 +52,16 @@ class AfsprakenController extends Controller
 
     public function success(Afspraken $afspraken)
     {
+        $afspraken = Afspraken::all();
         return view('afspraken.success', compact('afspraken'));
     }
 
+    public function overzicht(Afspraken $afspraken)
+    {
+        $afspraken = Afspraken::all();
+        return view('afspraken.overzicht', compact('afspraken'));
+    }
+
+    
 }
 

@@ -2,8 +2,6 @@
 
 @section('content')
 
-<main>
-    <h1>fietsonderhoud</h1>
-</main>
+<h1>Fietssoorten</h1>
 
 @endsection

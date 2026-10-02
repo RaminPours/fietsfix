@@ -9,6 +9,7 @@
 </head>
 
 <body class="bg-gray-100">
+
     <main class="max-w-2xl mx-auto px-6 py-10">
 
         <div class="bg-white rounded-2xl shadow-md p-8">
@@ -20,7 +21,7 @@
             <p class="text-gray-500 mb-8">
                 Vul hieronder je gegevens in om een afspraak bij FietsFix te maken.
             </p>
-
+            
             <form action="/afspraken" method="POST" class="space-y-5">
                 @csrf
 

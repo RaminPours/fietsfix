@@ -1,57 +1,8 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('layouts.app')
 
-    <title>FietsFix</title>
+@section('title')
 
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="bg-white text-gray-800">
-
-    <!-- NAVBAR -->
-    <nav class="bg-green-600 text-white shadow-md">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="h-20 flex items-center justify-between">
-
-                <!-- Logo -->
-                <a href="/" class="flex items-center gap-2">
-                    
-                    
-                    <img 
-                        src="{{ asset('images/fietsfix2.png') }}"
-                        alt="FietsFix"
-                        class="w-full h-[80px] object-cover ml-12"
-                     >
-                </a>
-
-                <!-- Menu -->
-                <div class="hidden md:flex items-center gap-8">
-
-                    <a href="/fietssoorten"
-                    class="bg-white text-green-600 rounded-full font-semibold hover:bg-green-50 px-5 py-2 transition">
-                        Fietssoorten
-                    </a>
-
-                    <a href="/onderhoud"
-                       class="bg-white text-green-600 rounded-full font-semibold hover:bg-green-50 px-5 py-2 transition">
-                        Fietsonderhoud
-                    </a>
-
-                    <a href="/contact"
-                       class="bg-white text-green-600 px-5 py-2 rounded-full
-                              font-bold hover:bg-green-50 transition">
-                        Contact
-                    </a>
-
-                </div>
-            </div>
-        </div>
-    </nav>
-
-
+@section('content')
     <!-- KORTING -->
     <div class="bg-red-500 text-white text-center py-3">
         <p class="font-bold text-lg">
@@ -60,10 +11,10 @@
     </div>
 
 
-    <!-- HERO -->
+    <!-- Over fietsfix -->
     <section class="relative">
 
-        <img 
+        <img
             src="{{ asset('images/fietsfix.jpg') }}"
             alt="FietsFix"
             class="w-full h-[500px] object-cover"
@@ -72,7 +23,7 @@
         <!-- Overlay -->
         <div class="absolute inset-0 bg-black/40"></div>
 
-        <!-- Hero content -->
+        <!-- Hero tekst -->
         <div class="absolute inset-0 flex items-center justify-center text-center px-6">
 
             <div class="text-white">
@@ -132,7 +83,9 @@
                 <p class="text-lg leading-relaxed text-gray-600 mt-4">
                     Bekijk onze prijzen en plan eenvoudig online een afspraak.
                 </p>
+
             </div>
+
 
             <!-- Beoordeling -->
             <div class="flex justify-center">
@@ -204,15 +157,4 @@
 
     </section>
 
-    <footer class="bg-green-600 text-white shadow-md">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="h-60 flex items-center justify-between">
-                <p>E-bike onderhoud</p>
-                <p>klantenservice</p>
-            </div>
-        </div>
-
-    </footer>
-
-</body>
-</html>
+@endsection
