@@ -47,21 +47,21 @@ class AfsprakenController extends Controller
 
         $afspraken = Afspraken::create($validated);
 
-        return redirect()->route('afspraken.success', ['afspraken' => $afspraken->id]);
+        return redirect()->route('afspraken.success', $afspraken->id);
     }
-
-    public function success(Afspraken $afspraken)
+    
+    public function success($id)
     {
-        $afspraken = Afspraken::all();
+        $afspraken = afspraken::find($id);
         return view('afspraken.success', compact('afspraken'));
-    }
+    }    
 
-    public function overzicht(Afspraken $afspraken)
+    public function delete($id)
     {
-        $afspraken = Afspraken::all();
-        return view('afspraken.overzicht', compact('afspraken'));
+        $afspraken = afspraken::find($id);
+            $afspraken->delete();
+            return redirect()->route('afspraken.index');
     }
-
     
 }
 

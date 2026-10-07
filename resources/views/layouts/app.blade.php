@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title')</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-<body class="bg-white text-gray-800">
-
-    <!-- NAVBAR -->
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    </head>
+    <body class="font-sans antialiased">
+         <!-- NAVBAR -->
     <nav class="bg-green-600 text-white shadow-md">
     <div class="max-w-8xl mx-auto">
         <div class="h-20 flex items-center relative">
@@ -51,28 +55,28 @@
 
 
 
-    <!-- PAGINA INHOUD -->
-    @yield('content')
+        <div class="min-h-screen bg-gray-100">
+            @include('layouts.navigation')
 
+            <!-- Page Heading -->
+            @isset($header)
+                <header class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endisset
 
-    <!-- FOOTER -->
-    <footer class="bg-green-600 text-white">
-        <div class="max-w-8xl mx-auto px-6">
-            <div class="min-h-60 flex items-center justify-between">
+            <!-- Page Content -->
+            <main>
+                @yield('content')
+            </main>
 
-                <img
-                        src="{{ asset('images/fietsfix2.png') }}"
-                        alt="FietsFix"
-                        class="h-[150px] w-auto"
-                    >    
-                <a href="">E-bikes</a>
-                <a href="">Bakfietsen</a>
-                
-
-                <a href="/afspraken.contact">Klantenservice</a>
-            </div>
+            <footer class="bg-gray-800 text-white py-6 mt-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <p>&copy; {{ date('Y') }} FietsFix. All rights reserved.</p>
+                </div>
+            </footer>
         </div>
-    </footer>
-
-</body>
+    </body>
 </html>
