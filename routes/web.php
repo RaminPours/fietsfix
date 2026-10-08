@@ -17,6 +17,7 @@ Route::middleware('auth')->group(function () {
     Route::get('fietsonderhoud', [AfsprakenController::class, 'fietsonderhoud']);
     Route::get('fietssoorten', [AfsprakenController::class, 'fietssoorten']);
     Route::get('contact', [AfsprakenController::class, 'contact']);
+    Route::get('afspraken/success/{id}', [AfsprakenController::class, 'success'])->name('afspraken.success');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

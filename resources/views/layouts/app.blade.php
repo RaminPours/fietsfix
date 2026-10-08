@@ -15,6 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
  <body class="font-sans antialiased">
+
          <!-- NAVBAR -->
     <nav class="bg-green-600 text-white shadow-md">
     <div class="max-w-8xl mx-auto">
@@ -54,18 +55,34 @@
 
             </div>
             <!-- Login en register rechts -->
-            <div class="absolute right-12 flex gap-4">
-                <a href="/login"
-                   class="bg-white text-green-600 rounded-full font-bold hover:bg-green-50 px-5 py-2 transition">
-                    inloggen
-                </a>
+            @guest 
+                <div class="absolute right-12 flex gap-4">
+                    <a href="{{ route('login') }}"
+                       class="bg-white text-green-600 px-5 py-2 rounded-full font-bold hover:bg-green-50 transition">
+                        Login
+                    </a>
 
-                <a  href="/register"
-                   class="bg-white text-green-600 rounded-full font-bold hover:bg-green-50 px-5 py-2 transition">
-                    registreren
-                </a>
+                    <a href="{{ route('register') }}"
+                       class="bg-white text-green-600 px-5 py-2 rounded-full font-bold hover:bg-green-50 transition">
+                        Register
+                    </a>
                 </div>
+            @else
+                <div class="absolute right-12 flex gap-4">
+                    <a href="{{ route('afspraken.success') }}"
+                       class="bg-white text-green-600 px-5 py-2 rounded-full font-bold hover:bg-green-50 transition">
+                        Afspraak beheren
+                    </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit"
+                                class="bg-white text-green-600 px-5 py-2 rounded-full font-bold hover:bg-green-50 transition">
+                            Logout
+                        </button>
+                    </form>
+
             </div>
+            @endguest
 
         </div>
     </div>
@@ -79,6 +96,7 @@
             <footer class="bg-gray-800 text-white py-6 mt-12">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <p>&copy; {{ date('Y') }} FietsFix. All rights reserved.</p>
+
                 </div>
             </footer>
         </div>

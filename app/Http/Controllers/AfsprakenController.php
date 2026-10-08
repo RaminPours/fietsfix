@@ -14,6 +14,11 @@ class AfsprakenController extends Controller
         return view('afspraken.index', compact('afspraken'));
     }
 
+    public function register()
+    {
+        return view('layouts.navigation');
+    }
+
     public function create()
     {
         return view('afspraken.create');

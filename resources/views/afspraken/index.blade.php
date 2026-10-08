@@ -131,7 +131,7 @@
 
 
     <!-- AFSPRAAK -->
-    <section id="afspraak" class="bg-gray-50 py-20">
+    <section class="bg-gray-50 py-20">
 
         <div class="max-w-6xl mx-auto px-6">
 
