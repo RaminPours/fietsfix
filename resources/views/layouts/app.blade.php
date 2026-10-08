@@ -14,7 +14,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+ <body class="font-sans antialiased">
          <!-- NAVBAR -->
     <nav class="bg-green-600 text-white shadow-md">
     <div class="max-w-8xl mx-auto">
@@ -32,6 +32,11 @@
             <!-- Menu gecentreerd -->
             <div class="flex justify-center gap-8 text-center w-full">
 
+                <a href="/"
+                   class="bg-white text-green-600 rounded-full font-bold hover:bg-green-50 px-5 py-2 transition">
+                    Home
+                </a>
+
                 <a href="/fietssoorten"
                    class="bg-white text-green-600 rounded-full font-bold hover:bg-green-50 px-5 py-2 transition">
                     Fietssoorten
@@ -48,24 +53,23 @@
                 </a>
 
             </div>
+            <!-- Login en register rechts -->
+            <div class="absolute right-12 flex gap-4">
+                <a href="/login"
+                   class="bg-white text-green-600 rounded-full font-bold hover:bg-green-50 px-5 py-2 transition">
+                    inloggen
+                </a>
+
+                <a  href="/register"
+                   class="bg-white text-green-600 rounded-full font-bold hover:bg-green-50 px-5 py-2 transition">
+                    registreren
+                </a>
+                </div>
+            </div>
 
         </div>
     </div>
 </nav>
-
-
-
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
 
             <!-- Page Content -->
             <main>

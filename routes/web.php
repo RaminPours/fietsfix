@@ -5,7 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 route::get('/', function () {
-    return view('welcome');
+    return view('afspraken.index');
 });
 
 Route::get('/dashboard', function () {
@@ -13,6 +13,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('afspraak', [AfsprakenController::class, 'index'])->name('afspraken.index');
+    Route::get('fietsonderhoud', [AfsprakenController::class, 'fietsonderhoud']);
+    Route::get('fietssoorten', [AfsprakenController::class, 'fietssoorten']);
+    Route::get('contact', [AfsprakenController::class, 'contact']);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

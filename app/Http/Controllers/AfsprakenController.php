@@ -10,7 +10,8 @@ class AfsprakenController extends Controller
 
     public function index()
     {
-        return view('afspraken.index');
+        $afspraken = Afspraken::all();
+        return view('afspraken.index', compact('afspraken'));
     }
 
     public function create()
