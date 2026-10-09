@@ -22,7 +22,7 @@
         <div class="h-20 flex items-center relative">
 
             <!-- Logo links -->
-            <a href="/" class="absolute left-0">
+            <a href="/" class="absolute left-3">
                 <img
                     src="{{ asset('images/fietsfix2.png') }}"
                     alt="FietsFix"
