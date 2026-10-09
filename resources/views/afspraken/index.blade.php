@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
+@section('title', 'FietsFix')
 
 @section('content')
     <!-- KORTING -->
@@ -151,7 +151,15 @@
 
             </div>
 
-            @include('afspraken.create')
+            @auth
+                @include('afspraken.form')
+            @else
+                <div class="text-center">
+                    <p class="mb-6">Log in of registreer je om een afspraak te maken en later in te zien.</p>
+                    <a href="{{ route('afspraken.create') }}" class="inline-block rounded-lg bg-green-600 px-6 py-3 font-bold text-white hover:bg-green-700">Inloggen en afspraak maken</a>
+                    <a href="{{ route('register') }}" class="inline-block px-6 py-3 font-bold text-green-700">Registreren</a>
+                </div>
+            @endauth
 
         </div>
 

@@ -11,20 +11,12 @@ Route::get('/fietsonderhoud', [AfsprakenController::class, 'fietsonderhoud'])
 Route::get('/fietssoorten', [AfsprakenController::class, 'fietssoorten'])
     ->name('fietssoorten');
 
-// Afspraak routes
-Route::post('/afspraken', [AfsprakenController::class, 'store'])
-    ->name('afspraken.store');
-Route::get('/dashboard/', [AfsprakenController::class, 'success'])
-    ->name('profile.dashboard');
-
-
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [ProfileController::class, 'dashboard'])
-        ->middleware('verified')
+    Route::get('/dashboard', [AfsprakenController::class, 'dashboard'])
         ->name('dashboard');
     Route::post('/afspraken', [AfsprakenController::class, 'store'])
         ->name('afspraken.store');
-    Route::get('/afspraken', [AfsprakenController::class, 'index'])
+    Route::get('/afspraken', [AfsprakenController::class, 'dashboard'])
         ->name('afspraken.index');
     Route::get('/afspraken/create', [AfsprakenController::class, 'create'])
         ->name('afspraken.create');
