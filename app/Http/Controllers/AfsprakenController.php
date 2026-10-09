@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Afspraken;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AfsprakenController extends Controller
 {
-
     public function index()
     {
-        $afspraken = Afspraken::all();
-        return view('afspraken.index', compact('afspraken'));
-    }
+        $afspraak = Afspraken::query()
+            ->latest()
+            ->get();
 
-    public function register()
-    {
-        return view('layouts.navigation');
+        return view('afspraken.index', compact('afspraak'));
     }
 
     public function create()
@@ -29,7 +27,7 @@ class AfsprakenController extends Controller
         return view('afspraken.contact');
     }
 
-       public function fietsonderhoud()
+    public function fietsonderhoud()
     {
         return view('afspraken.fietsonderhoud');
     }
@@ -38,36 +36,54 @@ class AfsprakenController extends Controller
     {
         return view('afspraken.fietssoorten');
     }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'naam' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'telefoonnummer' => 'required|string|max:20',
-            'fietstype' => 'required|string|max:255',
-            'fietsmerk' => 'required|string|max:255',
-            'probleem' => 'required|string|max:500',
-            'datum' => 'required|date',
-            'tijd' => 'required',
+            'naam' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'telefoonnummer' => ['required', 'string', 'max:20'],
+            'fietstype' => ['required', 'string', 'max:255'],
+            'fietsmerk' => ['required', 'string', 'max:255'],
+            'probleem' => ['required', 'string', 'max:500'],
+            'datum' => ['required', 'date', 'after_or_equal:today'],
+            'tijd' => ['required', 'date_format:H:i'],
         ]);
 
-        $afspraken = Afspraken::create($validated);
+        $validated['user_id'] = Auth::id();
 
-        return redirect()->route('afspraken.success', $afspraken->id);
-    }
-    
-    public function success($id)
-    {
-        $afspraken = afspraken::find($id);
-        return view('afspraken.success', compact('afspraken'));
-    }    
+        $afspraak = Afspraken::create($validated);
 
-    public function delete($id)
-    {
-        $afspraken = afspraken::find($id);
-            $afspraken->delete();
-            return redirect()->route('afspraken.index');
+        return redirect()->route('dashboard', ['id' => $afspraak->id])
+            ->with('success', 'Uw afspraak is succesvol gemaakt.');
     }
-    
+
+    public function dashboard()
+    {
+        $afspraken = Afspraken::where('user_id', Auth::id())
+            ->latest()
+            ->get();
+
+        return view('dashboard', compact('afspraken'));
+    }
+
+    public function success(int $id)
+    {
+        abort_unless(Afspraken::whereKey($id)->exists(), 404);
+
+        return view('dashboard', ['success' => true]);
+    }
+
+    public function delete(int $id)
+    {
+        $afspraak = Afspraken::whereKey($id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
+
+        $afspraak->delete();
+
+        return redirect()
+            ->route('afspraken.index')
+            ->with('success', 'De afspraak is verwijderd.');
+    }
 }
-

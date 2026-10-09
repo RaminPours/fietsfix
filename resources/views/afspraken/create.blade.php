@@ -22,7 +22,7 @@
                 Vul hieronder je gegevens in om een afspraak bij FietsFix te maken.
             </p>
             
-            <form action="/afspraken" method="POST" class="space-y-5">
+            <form action="{{ route('afspraken.store') }}" method="POST" class="space-y-5">
                 @csrf
 
                 <div>
